@@ -26,3 +26,6 @@ def switch_proxy():
     proxy = random.choice(lst)
     data = '{{"name": "{}"}}'.format(proxy).encode('utf-8')
     requests.put(url, data=data)
+
+if __name__ == '__main__':
+    switch_proxy()

@@ -12,7 +12,8 @@ def foo():
     while True:
         switch_proxy()
         options = uc.ChromeOptions()
-        # options.add_argument('--headless')
+        options.add_argument('--headless')
+        options.add_argument('--proxy-server=127.0.0.1:1081')
         options.add_experimental_option('mobileEmulation', {'deviceName': 'iPhone X'})
         driver = uc.Chrome(options=options)
         driver.get("https://www.wjx.cn/vm/PgndNFc.aspx")
@@ -32,11 +33,12 @@ def foo():
         time.sleep(1)
         button = driver.find_element(By.ID, "ctlNext")
         button.click()
+        time.sleep(0.5)
         driver.quit()
 
 
 if __name__ == '__main__':
-    num = 16
+    num = 20
     with ThreadPoolExecutor(num) as pool:
-        for i in range(16):
+        for i in range(num):
             pool.submit(foo)
